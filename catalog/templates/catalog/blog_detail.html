@@ -1,0 +1,27 @@
+{% extends 'catalog/base.html' %}
+
+{% load my_tags %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row text-start">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="{{ object.preview|mediapath }}"
+                     alt="Card image cap">
+            </div>
+            <div class="card-body">
+                <p class="card-text"><b>{{ object.title }}</b> ({{ object.slug }}) </p>
+                <p class="card-text">{{ object.content }}</p>
+            </div>
+            <div class="card-footer">
+                Просмотры: {{ object.views_count }}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

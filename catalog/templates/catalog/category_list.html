@@ -3,16 +3,18 @@
 {% block content %}
 
 <div class="row">
-    {% for object in objects_list %}
+    {% for object in object_list %}
     <div class="col-md-4">
         <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text={{ object.name }}"
+            <img class="card-img-top"
+                 data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text={{ object.name }}"
                  alt="Card image cap">
             <div class="card-body">
                 <p class="card-text">{{ object.description }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <a href="{% url 'catalog:category_product' object.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Просмотр</a>
+                        <a href="{% url 'catalog:category_product' object.pk %}" type="button"
+                           class="btn btn-sm btn-outline-secondary">Просмотр</a>
                     </div>
                 </div>
             </div>
