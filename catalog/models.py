@@ -38,6 +38,7 @@ class Product(models.Model):
     date_of_creation = models.DateField(verbose_name='Дата создания')
     date_of_last_modification = models.DateTimeField(auto_now_add=True, verbose_name='Дата последнего изменения')
 
+
     def __str__(self):
         """
         Возвращение строкового представления объекта
@@ -51,6 +52,31 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         ordering = ('name',)    # Сортировка по наименованию продукта
+
+
+class Version(models.Model):
+    """
+    Модель для версии продукта
+    """
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Продукт')
+    version_number = models.AutoField(primary_key=True, verbose_name='Номер версии')
+    version_name = models.CharField(max_length=100, verbose_name='Наименовании версии')
+    is_valid = models.BooleanField(default=True, verbose_name='Признак версии')
+
+    def __str__(self):
+        """
+        Возвращение строкового представления объекта
+        """
+        return f'Версия: "{self.version_name}" ({self.version_number}) для продукта {self.product}'
+
+    class Meta:
+        """
+        Настройки для наименования объекта/объектов
+        """
+        verbose_name = 'Версия'
+        verbose_name_plural = 'Версии'
+        ordering = ('version_number',)
+
 
 class Blog(models.Model):
     """

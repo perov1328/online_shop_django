@@ -10,9 +10,9 @@
                     <form method="post">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <p>Вы действительно хотите удалить статью "{{ object.title }}"?</p>
+                        <p>Вы действительно хотите удалить товар "{{ object.name }}"?</p>
                         <button type="submit" class="btn btn-success">Удалить</button>
-                        <a href="{% url 'catalog:list' %}">Отмена</a>
+                        <a href="{% url 'catalog:category' %}">Отмена</a>
                     </form>
                 </div>
             </div>
