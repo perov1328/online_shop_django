@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
@@ -37,6 +38,7 @@ class Product(models.Model):
     purchase_price = models.IntegerField(verbose_name='Цена за покупку')
     date_of_creation = models.DateField(verbose_name='Дата создания')
     date_of_last_modification = models.DateTimeField(auto_now_add=True, verbose_name='Дата последнего изменения')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Продавец')
 
 
     def __str__(self):

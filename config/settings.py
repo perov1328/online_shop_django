@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'catalog', # Приложение созданное в домашней работе 19.2
+    'users', # Приложение для работы с пользователями
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'users.User'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'send1328test@mail.ru'
+EMAIL_HOST_PASSWORD = 'ctycif0nJnNV9MywsBhH'
+EMAIL_USE_SSL = True

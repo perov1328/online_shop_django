@@ -5,8 +5,10 @@
 
 <div class="row">
     <div class="col-12 mb-5">
+        {% if user.verified %}
         <a href="{% url 'catalog:product_create' category_pk %}" type="button"
            class="btn btn-outline-success">Создать</a>
+        {% endif %}
     </div>
     {% for object in object_list %}
     <div class="col-md-4">
@@ -16,6 +18,7 @@
             <div class="card-body">
                 <p class="card-text">{{ object.name }}</p>
                 <p class="card-text">{{ object.description|truncatechars:100 }}</p>
+                <p class="card-text">{{ object.owner|default:"Ничейная" }}</p>
                 <li>
                     Версия: {% for version_item in object.version_set.all %}
                     {% if version_item.is_valid %}
@@ -26,9 +29,11 @@
             </div>
             <div class="card-footer">
                 <a href="{% url 'catalog:position' object.pk %}" type="button" class="btn btn-success">Просмотр</a>
+                {% if user.verified %}
                 <a href="{% url 'catalog:product_update' object.pk %}" type="button"
                    class="btn btn-warning">Изменить</a>
                 <a href="{% url 'catalog:product_delete' object.pk %}" type="button" class="btn btn-danger">Удалить</a>
+                {% endif %}
             </div>
         </div>
     </div>
