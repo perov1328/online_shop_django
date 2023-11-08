@@ -142,3 +142,5 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'send1328test@mail.ru'
 EMAIL_HOST_PASSWORD = 'ctycif0nJnNV9MywsBhH'
 EMAIL_USE_SSL = True
+
+LOGIN_URL = '/users/'

@@ -17,7 +17,7 @@ class ProductAdmin(admin.ModelAdmin):
     """
     Класс админки для продуктов
     """
-    list_display = ('id', 'name', 'purchase_price', 'category',)
+    list_display = ('id', 'name', 'purchase_price', 'category', 'is_published',)
     list_filter = ('category',)
     search_fields = ('name', 'description',)
 

@@ -39,6 +39,7 @@ class Product(models.Model):
     date_of_creation = models.DateField(verbose_name='Дата создания')
     date_of_last_modification = models.DateTimeField(auto_now_add=True, verbose_name='Дата последнего изменения')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Продавец')
+    is_published = models.BooleanField(default=False, verbose_name='Признак публикации')
 
 
     def __str__(self):
@@ -54,6 +55,22 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
         ordering = ('name',)    # Сортировка по наименованию продукта
+
+        permissions = [
+            (
+                'set_is_published',
+                'Can is_published'
+            ),
+            (
+              'set_description',
+              'Can description'
+            ),
+            (
+                'set_category',
+                'Can category'
+            )
+        ]
+
 
 
 class Version(models.Model):

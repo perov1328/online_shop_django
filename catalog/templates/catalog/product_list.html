@@ -13,6 +13,7 @@
     {% for object in object_list %}
     <div class="col-md-4">
         <div class="card mb-4 box-shadow">
+            {% if user.is_staff %}
             <img class="card-img-top" src="{{ object.preview|mediapath }}"
                  alt="Card image cap">
             <div class="card-body">
@@ -29,12 +30,18 @@
             </div>
             <div class="card-footer">
                 <a href="{% url 'catalog:position' object.pk %}" type="button" class="btn btn-success">Просмотр</a>
-                {% if user.verified %}
+                {% if perms.catalog.change_product and user == object.owner %}
                 <a href="{% url 'catalog:product_update' object.pk %}" type="button"
                    class="btn btn-warning">Изменить</a>
+                {% else %}
+                <a href="{% url 'catalog:product_update_moderator' object.pk %}" type="button"
+                   class="btn btn-warning">Редактировать</a>
+                {% endif %}
+                {% if perms.catalog.delete_product %}
                 <a href="{% url 'catalog:product_delete' object.pk %}" type="button" class="btn btn-danger">Удалить</a>
                 {% endif %}
             </div>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
